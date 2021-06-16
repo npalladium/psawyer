@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "psawyer"
+version = "0.0.1"
+description = "PSAW + Typer. Access Pushshift API from the CLI. Built for fun."
+authors = ["Nikhil <nikhil.pallamreddy+git@gmail.com>"]
+
+[tool.poetry.scripts]
+pswayer = "psawyer.main:app"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+psaw = "^0.1.0"
+typer = {extras = ["all"], version = "^0.3.2"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
