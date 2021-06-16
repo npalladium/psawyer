@@ -6,7 +6,6 @@ from psaw import PushshiftAPI
 
 from psawyer.utils import get_kwargs, SortOption
 
-api = PushshiftAPI()
 
 CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help", "help"]}
 
@@ -29,6 +28,7 @@ def submissions(
     limit: int = typer.Option(10, "--limit", "-l"),
 ):
     """Retrieve submissions."""
+    api = PushshiftAPI()
     gen = api.search_submissions(**get_kwargs())
     typer.echo(json.dumps([x._asdict() for x in gen]))
 
@@ -44,6 +44,7 @@ def comments(
     limit: int = typer.Option(10, "--limit", "-l"),
 ):
     """Retrieve comments."""
+    api = PushshiftAPI()
     gen = api.search_comments(**get_kwargs())
     typer.echo(json.dumps([x._asdict() for x in gen]))
 
