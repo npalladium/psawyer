@@ -5,7 +5,7 @@ description = "PSAW + Typer. Access Pushshift API from the CLI. Built for fun."
 authors = ["Nikhil <nikhil.pallamreddy+git@gmail.com>"]
 
 [tool.poetry.scripts]
-pswayer = "psawyer.main:app"
+psawyer = "psawyer.main:app"
 
 [tool.poetry.dependencies]
 python = "^3.8"
