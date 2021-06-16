@@ -1,6 +1,11 @@
+import json
+
 import typer
+from psaw import PushshiftAPI
 
 import psawyer.utils as utils
+
+api = PushshiftAPI()
 
 CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help", "help"]}
 
@@ -14,12 +19,14 @@ def help(ctx: typer.Context):
 
 @app.command()
 def submissions():
-    typer.echo(utils.get_kwargs())
+    gen = api.search_submissions(**utils.get_kwargs())
+    typer.echo(json.dumps([x._asdict() for x in gen]))
 
 
 @app.command()
 def comments():
-    typer.echo(utils.get_kwargs())
+    gen = api.search_comments(**utils.get_kwargs())
+    typer.echo(json.dumps([x._asdict() for x in gen]))
 
 
 if __name__ == "__main__":
