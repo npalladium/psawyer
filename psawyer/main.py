@@ -25,7 +25,7 @@ def submissions(
     author: str = typer.Option(None, "--author", "-a"),
     sort: SortOption = typer.Option("desc", "--sort", "-s", case_sensitive=False),
     fields: Optional[List[str]] = typer.Option(None, "--field", "-f"),
-    filter: Optional[List[str]] = typer.Option(None),
+    filter: Optional[List[str]] = typer.Option(None, "--filter", "-r"),
     limit: int = typer.Option(10, "--limit", "-l"),
 ):
     """Retrieve submissions."""
@@ -40,7 +40,7 @@ def comments(
     author: str = typer.Option(None, "--author", "-a"),
     sort: SortOption = typer.Option("desc", "--sort", "-s", case_sensitive=False),
     fields: Optional[List[str]] = typer.Option(None, "--field", "-f"),
-    filter: Optional[List[str]] = typer.Option(None),
+    filter: Optional[List[str]] = typer.Option(None, "--filter", "-r"),
     limit: int = typer.Option(10, "--limit", "-l"),
 ):
     """Retrieve comments."""
