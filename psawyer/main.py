@@ -1,5 +1,7 @@
 import typer
 
+import psawyer.utils as utils
+
 CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help", "help"]}
 
 app = typer.Typer(context_settings=CONTEXT_SETTINGS)
@@ -12,12 +14,12 @@ def help(ctx: typer.Context):
 
 @app.command()
 def submissions():
-    typer.echo("Submissions.")
+    typer.echo(utils.get_kwargs())
 
 
 @app.command()
 def comments():
-    typer.echo("Comments.")
+    typer.echo(utils.get_kwargs())
 
 
 if __name__ == "__main__":
