@@ -1,4 +1,5 @@
 import json
+from typing import List, Optional
 
 import typer
 from psaw import PushshiftAPI
@@ -18,13 +19,31 @@ def help(ctx: typer.Context):
 
 
 @app.command()
-def submissions():
+def submissions(
+    query: str = typer.Option(None, "--query", "-q"),
+    subreddit: str = typer.Option(None, "--subreddit", "-s"),
+    author: str = typer.Option(None, "--author", "-a"),
+    sort: str = typer.Option("desc", "--sort", "-s"),
+    fields: Optional[List[str]] = typer.Option(None, "--field", "-f"),
+    filter: Optional[List[str]] = typer.Option(None),
+    limit: int = typer.Option(10, "--limit", "-l"),
+):
+    """Retrieve submissions."""
     gen = api.search_submissions(**utils.get_kwargs())
     typer.echo(json.dumps([x._asdict() for x in gen]))
 
 
 @app.command()
-def comments():
+def comments(
+    query: str = typer.Option(None, "--query", "-q"),
+    subreddit: str = typer.Option(None, "--subreddit", "-s"),
+    author: str = typer.Option(None, "--author", "-a"),
+    sort: str = typer.Option("desc", "--sort", "-s"),
+    fields: Optional[List[str]] = typer.Option(None, "--field", "-f"),
+    filter: Optional[List[str]] = typer.Option(None),
+    limit: int = typer.Option(10, "--limit", "-l"),
+):
+    """Retrieve comments."""
     gen = api.search_comments(**utils.get_kwargs())
     typer.echo(json.dumps([x._asdict() for x in gen]))
 
