@@ -1,4 +1,5 @@
 import inspect
+from enum import Enum
 
 
 def get_kwargs():
@@ -9,5 +10,10 @@ def get_kwargs():
         if key != "self" and values[key] is not None and values[key] != ():
             kwargs[key] = values[key]
     if kwargs.get("fields") is not None and "created_utc" not in kwargs.get("fields"):
-        kwargs["fields"] = kwargs["fields"] + ("created_utc", )
+        kwargs["fields"] = kwargs["fields"] + ("created_utc",)
     return kwargs
+
+
+class SortOption(str, Enum):
+    asc = "asc"
+    desc = "desc"

@@ -4,7 +4,7 @@ from typing import List, Optional
 import typer
 from psaw import PushshiftAPI
 
-import psawyer.utils as utils
+from psawyer.utils import get_kwargs, SortOption
 
 api = PushshiftAPI()
 
@@ -23,13 +23,13 @@ def submissions(
     query: str = typer.Option(None, "--query", "-q"),
     subreddit: str = typer.Option(None, "--subreddit", "-s"),
     author: str = typer.Option(None, "--author", "-a"),
-    sort: str = typer.Option("desc", "--sort", "-s"),
+    sort: SortOption = typer.Option("desc", "--sort", "-s", case_sensitive=False),
     fields: Optional[List[str]] = typer.Option(None, "--field", "-f"),
     filter: Optional[List[str]] = typer.Option(None),
     limit: int = typer.Option(10, "--limit", "-l"),
 ):
     """Retrieve submissions."""
-    gen = api.search_submissions(**utils.get_kwargs())
+    gen = api.search_submissions(**get_kwargs())
     typer.echo(json.dumps([x._asdict() for x in gen]))
 
 
@@ -38,13 +38,13 @@ def comments(
     query: str = typer.Option(None, "--query", "-q"),
     subreddit: str = typer.Option(None, "--subreddit", "-s"),
     author: str = typer.Option(None, "--author", "-a"),
-    sort: str = typer.Option("desc", "--sort", "-s"),
+    sort: SortOption = typer.Option("desc", "--sort", "-s", case_sensitive=False),
     fields: Optional[List[str]] = typer.Option(None, "--field", "-f"),
     filter: Optional[List[str]] = typer.Option(None),
     limit: int = typer.Option(10, "--limit", "-l"),
 ):
     """Retrieve comments."""
-    gen = api.search_comments(**utils.get_kwargs())
+    gen = api.search_comments(**get_kwargs())
     typer.echo(json.dumps([x._asdict() for x in gen]))
 
 
