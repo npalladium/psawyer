@@ -6,6 +6,6 @@ def get_kwargs():
     keys, _, _, values = inspect.getargvalues(frame)
     kwargs = {}
     for key in keys:
-        if key != "self":
+        if key != "self" and values[key] is not None and values[key] != ():
             kwargs[key] = values[key]
     return kwargs
